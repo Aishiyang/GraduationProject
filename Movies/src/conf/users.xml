@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="users" namespace="/users" extends="default">
+		<action name="createUsers" class="action.UsersAction" method="createUsers">
+			<result>/admin/addusers.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="login" class="action.UsersAction" method="login">
+			<result>/admin/admincenter.jsp</result>
+			<result name="fail">/admin/login.jsp</result>
+		</action>
+		<action name="addUsers" class="action.UsersAction" method="addUsers">
+			<result name="success" type="chain">createUsers</result>
+			<result name="fail" type="chain">createUsers</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateUsers" class="action.UsersAction" method="updateUsers">
+			<result name="success" type="chain">getAllUsers</result>
+			<result name="fail" type="chain">getAllUsers</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteUsers" class="action.UsersAction" method="deleteUsers">
+			<result name="success" type="chain">getAllUsers</result>
+			<result name="fail" type="chain">getAllUsers</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllUsers" class="action.UsersAction" method="getAllUsers">
+			<result>/admin/listusers.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getUsersById" class="action.UsersAction" method="getUsersById">
+			<result>/admin/editusers.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryUsersByCond" class="action.UsersAction"
+			method="queryUsersByCond">
+			<result>/admin/queryusers.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

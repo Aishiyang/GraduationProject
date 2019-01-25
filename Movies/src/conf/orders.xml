@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="orders" namespace="/orders" extends="default">
+		<action name="createOrders" class="action.OrdersAction" method="createOrders">
+			<result>/admin/addorders.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addOrders" class="action.OrdersAction" method="addOrders">
+			<result name="success" type="chain">createOrders</result>
+			<result name="fail" type="chain">createOrders</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateOrders" class="action.OrdersAction" method="updateOrders">
+			<result name="success" type="chain">getAllOrders</result>
+			<result name="fail" type="chain">getAllOrders</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteOrders" class="action.OrdersAction" method="deleteOrders">
+			<result name="success" type="chain">getAllOrders</result>
+			<result name="fail" type="chain">getAllOrders</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllOrders" class="action.OrdersAction" method="getAllOrders">
+			<result>/admin/listorders.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getOrdersById" class="action.OrdersAction"
+			method="getOrdersById">
+			<result>/admin/editorders.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryOrdersByCond" class="action.OrdersAction"
+			method="queryOrdersByCond">
+			<result>/admin/queryorders.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cart" namespace="/cart" extends="default">
+		<action name="createCart" class="action.CartAction" method="createCart">
+			<result>/admin/addcart.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addCart" class="action.CartAction" method="addCart">
+			<result name="success" type="chain">createCart</result>
+			<result name="fail" type="chain">createCart</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateCart" class="action.CartAction" method="updateCart">
+			<result name="success" type="chain">getAllCart</result>
+			<result name="fail" type="chain">getAllCart</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteCart" class="action.CartAction" method="deleteCart">
+			<result name="success" type="chain">getAllCart</result>
+			<result name="fail" type="chain">getAllCart</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllCart" class="action.CartAction" method="getAllCart">
+			<result>/admin/listcart.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getCartById" class="action.CartAction" method="getCartById">
+			<result>/admin/editcart.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryCartByCond" class="action.CartAction"
+			method="queryCartByCond">
+			<result>/admin/querycart.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

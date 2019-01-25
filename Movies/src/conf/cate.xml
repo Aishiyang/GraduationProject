@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cate" namespace="/cate" extends="default">
+		<action name="createCate" class="action.CateAction" method="createCate">
+			<result>/admin/addcate.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addCate" class="action.CateAction" method="addCate">
+			<result name="success" type="chain">createCate</result>
+			<result name="fail" type="chain">createCate</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateCate" class="action.CateAction" method="updateCate">
+			<result name="success" type="chain">getAllCate</result>
+			<result name="fail" type="chain">getAllCate</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteCate" class="action.CateAction" method="deleteCate">
+			<result name="success" type="chain">getAllCate</result>
+			<result name="fail" type="chain">getAllCate</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllCate" class="action.CateAction" method="getAllCate">
+			<result>/admin/listcate.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getCateById" class="action.CateAction" method="getCateById">
+			<result>/admin/editcate.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryCateByCond" class="action.CateAction"
+			method="queryCateByCond">
+			<result>/admin/querycate.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

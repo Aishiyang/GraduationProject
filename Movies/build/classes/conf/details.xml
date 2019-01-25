@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="details" namespace="/details" extends="default">
+		<action name="createDetails" class="action.DetailsAction"
+			method="createDetails">
+			<result>/admin/adddetails.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addDetails" class="action.DetailsAction" method="addDetails">
+			<result name="success" type="chain">createDetails</result>
+			<result name="fail" type="chain">createDetails</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateDetails" class="action.DetailsAction"
+			method="updateDetails">
+			<result name="success" type="chain">getAllDetails</result>
+			<result name="fail" type="chain">getAllDetails</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteDetails" class="action.DetailsAction"
+			method="deleteDetails">
+			<result name="success" type="chain">getAllDetails</result>
+			<result name="fail" type="chain">getAllDetails</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllDetails" class="action.DetailsAction"
+			method="getAllDetails">
+			<result>/admin/listdetails.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getDetailsById" class="action.DetailsAction"
+			method="getDetailsById">
+			<result>/admin/editdetails.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryDetailsByCond" class="action.DetailsAction"
+			method="queryDetailsByCond">
+			<result>/admin/querydetails.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

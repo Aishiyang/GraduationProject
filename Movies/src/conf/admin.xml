@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" namespace="/admin" extends="default">
+		<action name="login" class="action.AdminAction" method="login">
+			<result>/admin/admincenter.jsp</result>
+			<result name="adminfail">/admin/login.jsp</result>
+		</action>
+		<action name="createAdmin" class="action.AdminAction" method="createAdmin">
+			<result>/admin/addadmin.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addAdmin" class="action.AdminAction" method="addAdmin">
+			<result name="success" type="chain">createAdmin</result>
+			<result name="fail" type="chain">createAdmin</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateAdmin" class="action.AdminAction" method="updateAdmin">
+			<result name="success" type="chain">getAllAdmin</result>
+			<result name="fail" type="chain">getAllAdmin</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteAdmin" class="action.AdminAction" method="deleteAdmin">
+			<result name="success" type="chain">getAllAdmin</result>
+			<result name="fail" type="chain">getAllAdmin</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllAdmin" class="action.AdminAction" method="getAllAdmin">
+			<result>/admin/listadmin.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAdminById" class="action.AdminAction" method="getAdminById">
+			<result>/admin/editadmin.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryAdminByCond" class="action.AdminAction"
+			method="queryAdminByCond">
+			<result>/admin/queryadmin.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="goods" namespace="/goods" extends="default">
+		<action name="createGoods" class="action.GoodsAction" method="createGoods">
+			<result>/admin/addgoods.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="addGoods" class="action.GoodsAction" method="addGoods">
+			<result name="success" type="chain">createGoods</result>
+			<result name="fail" type="chain">createGoods</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="updateGoods" class="action.GoodsAction" method="updateGoods">
+			<result name="success" type="chain">getAllGoods</result>
+			<result name="fail" type="chain">getAllGoods</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="deleteGoods" class="action.GoodsAction" method="deleteGoods">
+			<result name="success" type="chain">getAllGoods</result>
+			<result name="fail" type="chain">getAllGoods</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getAllGoods" class="action.GoodsAction" method="getAllGoods">
+			<result>/admin/listgoods.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="getGoodsById" class="action.GoodsAction" method="getGoodsById">
+			<result>/admin/editgoods.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+		<action name="queryGoodsByCond" class="action.GoodsAction"
+			method="queryGoodsByCond">
+			<result>/admin/querygoods.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="adminInterceptor"></interceptor-ref>
+		</action>
+	</package>
+</struts> 

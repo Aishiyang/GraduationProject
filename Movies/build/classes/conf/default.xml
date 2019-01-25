@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="messageresources"></constant>
+	<constant name="struts.multipart.maxSize" value="52428800"></constant>
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 管理员拦截器 -->
+			<interceptor name="adminInterceptor" class="interceptor.AdminInterceptor"></interceptor>
+			<!-- 注册用户拦截器 -->
+			<interceptor name="userInterceptor" class="interceptor.UserInterceptor"></interceptor>
+		</interceptors>
+		<global-results>
+			<result name="fail" type="redirect">/index/preLogin.action</result>
+			<result name="usererror" type="redirect">/index/preLogin.action</result>
+			<result name="db error">/index.jsp</result>
+		</global-results>
+		<!-- 国际化 -->
+		<action name="Change" class="action.LanguageAction" method="ChangeLanguage">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/index.jsp</result>
+		</action>
+	</package>
+</struts>    

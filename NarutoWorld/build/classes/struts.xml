@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.custom.i18n.resources" value="basename"/>
+	
+	<package name="narutoWorld" extends="struts-default" namespace="/">
+		<!-- 配置自定义拦截器 -->
+		<interceptors>
+			<interceptor name="privilegeInterceptor" class="com.dufl.narutoworld.interceptor.PrivilegeInterceptor"/>
+			<interceptor name="myInter" class="org.locale.action.CheckInterceptor"></interceptor>			
+		</interceptors>
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		<!-- 国际化切换的Action -->
+		<action name="globalChange" class="com.dufl.narutoworld.resources.message">
+			<result name="success">/index.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="myInter"></interceptor-ref>
+		</action> 
+		
+		<!-- 配置首页访问的Action -->
+		<action name="index" class="com.dufl.narutoworld.action.IndexAction">
+			<result name="index">/index.jsp</result>
+		</action>
+		<!-- 配置用户模块的Action -->
+		<action name="user_*" class="com.dufl.narutoworld.action.UserAction" method="{1}">
+			<result name="registExists">/txz.jsp</result>
+			<result name="registSuccess">/login.jsp</result>
+			<result name="loginFail">/login.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index</result>
+			<result name="quit" type="redirectAction">index</result>
+		</action>
+		
+		<action name="character_characterInfoManagementCondition" class="com.dufl.narutoworld.action.AdminAction" method="characterInfoManagementCondition">
+			<result name="characterInfoManagementCondition">/zyrw.jsp</result>
+			<interceptor-ref name="privilegeInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		
+		<!-- 配置管理员的Action -->
+		<action name="admin_*" class="com.dufl.narutoworld.action.AdminAction" method="{1}">
+			<result name="index">/admin/index.jsp</result>
+			<result name="userInformationManagement">/admin/userInformationManagement.jsp</result>
+			<result name="characterInfoManagement">/admin/characterInfoManagement.jsp</result>
+			<result name="newsManagement">/admin/newsManagement.jsp</result>
+			<result name="linksManagement">/admin/linksManagement.jsp</result>
+			<result name="homePhotoManagement">/admin/homePhotoManagement.jsp</result>
+			<result name="systemNotification">/admin/systemNotification.jsp</result>
+		</action>
+		
+		<action name="action2" class="com.dufl.narutoworld.resources.message" method="showjsp">
+			<result name="success">test.jsp</result>
+		</action>
+	</package>	
+</struts>
